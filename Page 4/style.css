@@ -1,0 +1,533 @@
+/* ===== Font Faces ===== */
+@font-face {
+  font-family: 'Gate';
+  src: url('./asset/gate-corporate-logo-font-2024-09-30-18-16-27-utc/gate-corporate-logo-font-2024-09-30-18-16-27-utc/Gate-Regular/Gate-Regular.woff2') format('woff2'),
+    url('./asset/gate-corporate-logo-font-2024-09-30-18-16-27-utc/gate-corporate-logo-font-2024-09-30-18-16-27-utc/Gate-Regular/Gate-Regular.woff') format('woff'),
+    url('./asset/gate-corporate-logo-font-2024-09-30-18-16-27-utc/gate-corporate-logo-font-2024-09-30-18-16-27-utc/Gate-Regular/Gate-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nasalization';
+  src: url('./asset/Nasalization Rg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Motive font family */
+@font-face {
+  font-family: 'Motive';
+  src: url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Regular/Motive-Regular.woff2') format('woff2'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Regular/Motive-Regular.woff') format('woff'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Regular/Motive-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Motive';
+  src: url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Medium/Motive-Medium.woff2') format('woff2'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Medium/Motive-Medium.woff') format('woff'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Medium/Motive-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Motive';
+  src: url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-SemiBold/Motive-SemiBold.woff2') format('woff2'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-SemiBold/Motive-SemiBold.woff') format('woff'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-SemiBold/Motive-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Motive';
+  src: url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Bold/Motive-Bold.woff2') format('woff2'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Bold/Motive-Bold.woff') format('woff'),
+    url('./asset/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/motive-unique-logo-branding-font-family-2025-08-01-15-25-09-utc/Motive-Bold/Motive-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Motive', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+/* ===== Background ===== */
+.bg-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.bg-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Header / Navigation ===== */
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 94px;
+  padding: 0 50px;
+  margin-top: 15px;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  height: 27px;
+  width: auto;
+  display: block;
+}
+
+.logo-separator {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.logo-text {
+  font-family: 'Nasalization', 'Motive', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Nav links */
+nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(calc(-50% - 11.55px));
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  list-style: none;
+  filter: drop-shadow(0px 3.6px 3.6px rgba(0, 0, 0, 0.25));
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links li a {
+  font-family: 'Motive', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.36px;
+  text-align: center;
+  transition: opacity 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 59px;
+  padding: 0 8px;
+}
+
+.nav-links li a:hover {
+  opacity: 0.75;
+}
+
+/* CTA Button — Waitlist */
+.btn-waitlist {
+  position: absolute;
+  right: 23.25px;
+  top: calc(50% - 0.03px);
+  transform: translateY(-50%);
+  height: 37.5px;
+  width: 154px;
+  background: #000;
+  border: none;
+  border-radius: 38.242px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow:
+    0px 0.661px 0.661px -0.598px rgba(0, 0, 0, 0.18),
+    0px 1.801px 1.801px -1.195px rgba(0, 0, 0, 0.18),
+    0px 3.953px 3.953px -1.793px rgba(0, 0, 0, 0.17),
+    0px 8.776px 8.776px -2.39px rgba(0, 0, 0, 0.14),
+    0px 22.308px 22.308px -2.988px rgba(0, 0, 0, 0.06);
+}
+
+.btn-waitlist__label {
+  position: absolute;
+  left: calc(50% + 1.25px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 106.25px;
+  height: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Motive', sans-serif;
+  font-weight: 600;
+  font-size: 15.137px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: -0.2549px;
+  line-height: 15.297px;
+  white-space: nowrap;
+}
+
+.btn-waitlist__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset -3.187px 2.39px 7.17px 0px #0175ff,
+    inset 2.39px -1.593px 6.374px 0px #0ef;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(1, 117, 255, 0) 0%, rgba(1, 117, 255, 0) 100%);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.btn-waitlist:hover .btn-waitlist__glow {
+  box-shadow:
+    inset -3.187px 2.39px 7.17px 0px #0175ff,
+    inset 2.39px -1.593px 6.374px 0px #0ef,
+    inset 0px -4px 10px 0px rgba(0, 238, 255, 0.9),
+    0px 6px 20px 0px rgba(0, 238, 255, 0.4);
+  background: linear-gradient(to top, rgba(0, 238, 255, 0.18) 0%, transparent 25%);
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+  position: absolute;
+  left: 50px;
+  top: 157.5px;
+  transform: translateY(-50%);
+  z-index: 20;
+  font-family: 'Motive', sans-serif;
+  font-weight: 400;
+  font-size: 18.75px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.375px;
+  text-transform: capitalize;
+  transition: opacity 0.25s ease;
+}
+
+.back-btn:hover {
+  opacity: 0.7;
+}
+
+/* ===== Main Content ===== */
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  padding: 0 75px;
+  height: calc(100vh - 94px - 66px);
+  margin-top: -15px;
+}
+
+/* ===== Step Label ===== */
+.step-label {
+  font-family: 'Motive', sans-serif;
+  font-weight: 400;
+  font-size: 18.75px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.375px;
+  text-transform: capitalize;
+  height: 27.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Form Card — Glassmorphism ===== */
+.form-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 681px;
+  max-width: 100%;
+  padding: 20px 40px 38px;
+  border-radius: 20px;
+  position: relative;
+  overflow: clip;
+
+  /* Glassmorphism — matching Page 4 user preferences */
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0px 4px 33.5px 0px rgba(0, 149, 255, 0.25);
+  border: 1px solid rgba(120, 180, 255, 0.18);
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%,
+      rgba(0, 149, 255, 0.08) 0%,
+      rgba(0, 80, 200, 0.03) 40%,
+      transparent 70%);
+  z-index: 0;
+}
+
+.form-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.25),
+    inset 0 0 24px rgba(0, 80, 200, 0.04);
+  z-index: 1;
+}
+
+.form-card>* {
+  position: relative;
+  z-index: 2;
+}
+
+.form-title {
+  font-family: 'Motive', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.6px;
+  line-height: 44px;
+  width: 551px;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+/* ===== Checkbox Options — Glass Rows ===== */
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 17.7px;
+  width: 551px;
+  max-width: 100%;
+  padding: 21.24px 24.78px;
+  border-radius: 8.85px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 0;
+}
+
+.option-row+.option-row {
+  margin-top: 20px;
+}
+
+.option-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.option-row:has(input:checked) {
+  background: rgba(0, 149, 255, 0.08);
+  border-color: rgba(55, 175, 249, 0.4);
+  box-shadow: 0 0 12px rgba(0, 149, 255, 0.1);
+}
+
+/* Hide native checkbox */
+.option-row input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Custom checkbox */
+.custom-checkbox {
+  flex-shrink: 0;
+  width: 24px;
+  height: 22px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  transition: background 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.option-row:has(input:checked) .custom-checkbox {
+  background: rgba(55, 175, 249, 0.3);
+  border-color: rgba(55, 175, 249, 0.8);
+}
+
+.option-row:has(input:checked) .custom-checkbox::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+  line-height: 1;
+}
+
+.option-label {
+  font-family: 'Motive', sans-serif;
+  font-weight: 400;
+  font-size: 21.24px;
+  color: #fff;
+  letter-spacing: -0.21px;
+  white-space: nowrap;
+}
+
+/* ===== Next Button ===== */
+.next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 20px;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-family: 'Motive', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0px 2px 20.6px 0px rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 28px 0px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.next-btn .chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.next-btn .chevron img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== Footer ===== */
+footer {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.footer-text {
+  font-family: 'Motive', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.44px;
+  white-space: nowrap;
+}
+
+.footer-text .brand {
+  font-family: 'Nasalization', 'Motive', sans-serif;
+  font-weight: 400;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .back-btn {
+    left: 20px;
+  }
+
+  .main-content {
+    padding: 0 20px;
+  }
+
+  .form-card {
+    width: 100%;
+    padding: 16px 20px 30px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    width: 100%;
+  }
+
+  .option-row {
+    width: 100%;
+    padding: 16px 20px;
+  }
+
+  .option-label {
+    font-size: 16px;
+    white-space: normal;
+  }
+
+  .footer-text {
+    font-size: 16px;
+  }
+}
