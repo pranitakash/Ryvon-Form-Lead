@@ -34,13 +34,25 @@ app.post('/api/leads', async (req, res) => {
 
     if (scriptUrl) {
       // Send a POST request to the Google Apps Script Web App
-      const fetch = (await import('node-fetch')).default;
       const response = await fetch(scriptUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
       });
-      const result = await response.json();
+      
+      const responseText = await response.text();
+      let result;
+      
+      try {
+        result = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Non-JSON response from Google Apps Script. Ensure the script is deployed with access to "Anyone". Response:', responseText);
+        return res.status(500).json({ success: false, message: 'Google Sheets integration error. Invalid response.' });
+      }
+
       if (result.status === 'success') {
         console.log(`Lead from ${data.firstName} ${data.lastName} successfully synced to Google Sheets!`);
         res.json({ success: true, message: 'Lead saved successfully' });
