@@ -42,17 +42,17 @@ function csvEscape(value) {
  * POST /api/leads
  * Receives form data and appends it as a row in leads.csv
  */
-app.post('/api/leads', (req, res) => {
+app.post('/api/leads', async (req, res) => {
   try {
     const data = req.body;
 
-    // Create CSV file with headers if it doesn't exist
+    // Create CSV file with headers if it doesn't exist (Local Backup)
     if (!fs.existsSync(CSV_FILE)) {
       fs.writeFileSync(CSV_FILE, CSV_HEADERS.join(',') + '\n', 'utf8');
       console.log('Created leads.csv with headers');
     }
 
-    // Build the row
+    // Build the row for CSV backup
     const timestamp = new Date().toISOString();
     const row = [
       timestamp,
@@ -70,8 +70,28 @@ app.post('/api/leads', (req, res) => {
 
     // Append row to CSV
     fs.appendFileSync(CSV_FILE, row.join(',') + '\n', 'utf8');
+    console.log(`Lead saved locally: ${data.firstName} ${data.lastName} <${data.email}>`);
 
-    console.log(`Lead saved: ${data.firstName} ${data.lastName} <${data.email}>`);
+    // -> NEW: Send data to Google Sheet via Apps Script if configured
+    const scriptUrl = process.env.GOOGLE_SCRIPT_URL; // Add your Web App URL here or in .env
+
+    if (scriptUrl) {
+      // Send a POST request to the Google Apps Script Web App
+      const fetch = (await import('node-fetch')).default;
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+      if (result.status === 'success') {
+        console.log('Lead successfully synced to Google Sheets!');
+      } else {
+        console.error('Failed to sync to Google Sheets:', result);
+      }
+    } else {
+      console.log('GOOGLE_SCRIPT_URL is not set. Data was only saved locally to CSV.');
+    }
 
     res.json({ success: true, message: 'Lead saved successfully' });
   } catch (error) {
