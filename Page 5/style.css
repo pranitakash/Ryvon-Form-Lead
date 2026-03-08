@@ -454,13 +454,13 @@ footer {
   padding-bottom: 22px;
   text-align: center;
   width: 100%;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-text {
-  position: fixed;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 10;
   z-index: 10;
   font-family: 'Motive', sans-serif;
   font-weight: 500;
@@ -858,64 +858,15 @@ footer {
 
 }
 
-/* ===== Page 5 Specific Fixed Footer ===== */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding-bottom: 22px;
-  padding-top: 30px;
-  z-index: 100;
-  pointer-events: none;
-  /* Let clicks pass through if there's no background */
-  background: linear-gradient(to top, #000 30%, transparent 100%);
-  /* Optional background to ensure legibility */
-}
-
-/* Ensure footer text is visible and centered */
-.footer-text {
-  font-family: 'Motive', sans-serif;
-  font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 22px);
-  color: #fff;
-  text-align: center !important;
-  letter-spacing: 0.44px;
-  line-height: normal;
-  width: 100% !important;
-  white-space: nowrap;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  pointer-events: auto;
-  /* Re-enable clicks on text if needed */
-}
-
-.footer-text .brand {
-  font-family: 'Nasalization', 'Motive', sans-serif;
-  font-weight: 400;
-}
-
 /* ===== Global Responsive Footer Gap ===== */
 .main-content,
 .hero {
   flex: 1 0 auto !important;
-  padding-bottom: 120px !important;
-  /* Space for fixed footer on desktop */
 }
 
 @media(max-width: 768px) {
-
-  .main-content,
-  .hero {
-    padding-bottom: 140px !important;
-    /* Larger space for fixed footer on mobile */
-  }
-
   .form-card {
-    margin-bottom: 20px !important;
+    margin-bottom: 0px !important;
   }
 
   .next-btn {
