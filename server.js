@@ -1,80 +1,35 @@
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
-const CSV_FILE = path.join(__dirname, 'leads.csv');
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// CSV headers
-const CSV_HEADERS = [
-  'Timestamp',
-  'FirstName',
-  'LastName',
-  'Company',
-  'Industry',
-  'Email',
-  'Phone',
-  'Interests',
-  'Timeline',
-  'Budget',
-  'Message'
-];
+// Serve static directory for front-end
+app.use(express.static(__dirname));
 
-/**
- * Escape a value for CSV (handles commas, quotes, newlines)
- */
-function csvEscape(value) {
-  if (value == null) return '';
-  const str = String(value);
-  if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
-    return '"' + str.replace(/"/g, '""') + '"';
-  }
-  return str;
-}
+// Redirect root to Page 1
+app.get('/', (req, res) => {
+  res.redirect('/Page%201/index.html');
+});
+
+// --- Google Sheets Sync Only ---
 
 /**
  * POST /api/leads
- * Receives form data and appends it as a row in leads.csv
+ * Receives form data and forwards it to Google Sheets
  */
 app.post('/api/leads', async (req, res) => {
   try {
     const data = req.body;
 
-    // Create CSV file with headers if it doesn't exist (Local Backup)
-    if (!fs.existsSync(CSV_FILE)) {
-      fs.writeFileSync(CSV_FILE, CSV_HEADERS.join(',') + '\n', 'utf8');
-      console.log('Created leads.csv with headers');
-    }
-
-    // Build the row for CSV backup
-    const timestamp = new Date().toISOString();
-    const row = [
-      timestamp,
-      data.firstName || '',
-      data.lastName || '',
-      data.company || '',
-      data.industry || '',
-      data.email || '',
-      data.phone || '',
-      Array.isArray(data.interests) ? data.interests.join('; ') : (data.interests || ''),
-      Array.isArray(data.timeline) ? data.timeline.join('; ') : (data.timeline || ''),
-      Array.isArray(data.budget) ? data.budget.join('; ') : (data.budget || ''),
-      data.message || ''
-    ].map(csvEscape);
-
-    // Append row to CSV
-    fs.appendFileSync(CSV_FILE, row.join(',') + '\n', 'utf8');
-    console.log(`Lead saved locally: ${data.firstName} ${data.lastName} <${data.email}>`);
-
-    // -> NEW: Send data to Google Sheet via Apps Script if configured
+    // Send data to Google Sheet via Apps Script
     const scriptUrl = process.env.GOOGLE_SCRIPT_URL; // Add your Web App URL here or in .env
 
     if (scriptUrl) {
@@ -87,36 +42,28 @@ app.post('/api/leads', async (req, res) => {
       });
       const result = await response.json();
       if (result.status === 'success') {
-        console.log('Lead successfully synced to Google Sheets!');
+        console.log(`Lead from ${data.firstName} ${data.lastName} successfully synced to Google Sheets!`);
+        res.json({ success: true, message: 'Lead saved successfully' });
       } else {
         console.error('Failed to sync to Google Sheets:', result);
+        res.status(500).json({ success: false, message: 'Failed to sync to Google Sheets' });
       }
     } else {
-      console.log('GOOGLE_SCRIPT_URL is not set. Data was only saved locally to CSV.');
+      console.error('GOOGLE_SCRIPT_URL is not set.');
+      res.status(500).json({ success: false, message: 'Server configuration error: Google Script URL is missing.' });
     }
 
-    res.json({ success: true, message: 'Lead saved successfully' });
   } catch (error) {
     console.error('Error saving lead:', error);
     res.status(500).json({ success: false, message: 'Failed to save lead' });
   }
 });
 
-// Download CSV endpoint
-app.get('/api/leads/download', (req, res) => {
-  if (fs.existsSync(CSV_FILE)) {
-    res.download(CSV_FILE, 'ryvon_leads.csv');
-  } else {
-    res.status(404).json({ error: 'No leads have been submitted yet.' });
-  }
-});
-
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', leads: fs.existsSync(CSV_FILE) ? 'file exists' : 'no file yet' });
+  res.json({ status: 'ok' });
 });
 
 app.listen(PORT, () => {
-  console.log(`\n  Ryvon Lead Server running at http://localhost:${PORT}`);
-  console.log(`  CSV file: ${CSV_FILE}\n`);
+  console.log(`\n  Ryvon Lead Server running at http://localhost:${PORT}\n`);
 });
