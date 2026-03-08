@@ -495,7 +495,13 @@ nav {
   object-fit: contain;
 }
 
-/* ===== Footer Text ===== */
+/* ===== Footer ===== */
+footer {
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+
 .footer-text {
   font-family: 'Motive', sans-serif;
   font-weight: 500;

@@ -740,21 +740,21 @@ footer {
   }
 
   .footer-text {
-  font-family: 'Motive', sans-serif;
-  font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 22px);
-  color: #fff;
-  text-align: center !important;
-  letter-spacing: 0.44px;
-  line-height: normal;
-  width: 100% !important;
-  white-space: nowrap;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-}
+    font-family: 'Motive', sans-serif;
+    font-weight: 500;
+    font-size: clamp(14px, 1.5vw, 22px);
+    color: #fff;
+    text-align: center !important;
+    letter-spacing: 0.44px;
+    line-height: normal;
+    width: 100% !important;
+    white-space: nowrap;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+  }
 
   .nav-links li a {
     font-size: 20px;
@@ -875,21 +875,21 @@ footer {
 
 @media (max-height: 820px) and (min-width: 769px) {
   .footer-text {
-  font-family: 'Motive', sans-serif;
-  font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 22px);
-  color: #fff;
-  text-align: center !important;
-  letter-spacing: 0.44px;
-  line-height: normal;
-  width: 100% !important;
-  white-space: nowrap;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-}
+    font-family: 'Motive', sans-serif;
+    font-weight: 500;
+    font-size: clamp(14px, 1.5vw, 22px);
+    color: #fff;
+    text-align: center !important;
+    letter-spacing: 0.44px;
+    line-height: normal;
+    width: 100% !important;
+    white-space: nowrap;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+  }
 
   footer {
     position: relative;
@@ -908,21 +908,21 @@ footer {
   }
 
   .footer-text {
-  font-family: 'Motive', sans-serif;
-  font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 22px);
-  color: #fff;
-  text-align: center !important;
-  letter-spacing: 0.44px;
-  line-height: normal;
-  width: 100% !important;
-  white-space: nowrap;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-}
+    font-family: 'Motive', sans-serif;
+    font-weight: 500;
+    font-size: clamp(14px, 1.5vw, 22px);
+    color: #fff;
+    text-align: center !important;
+    letter-spacing: 0.44px;
+    line-height: normal;
+    width: 100% !important;
+    white-space: nowrap;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+  }
 
   footer {
     position: relative;
@@ -939,15 +939,19 @@ body {
   flex-direction: column !important;
   min-height: 100vh !important;
 }
+
 body::-webkit-scrollbar {
   display: none !important;
 }
 
-.main-content, .hero {
+.main-content,
+.hero {
   flex: 1 0 auto;
 }
 
-footer, body > .footer-text, .page > .footer-text {
+footer,
+body>.footer-text,
+.page>.footer-text {
   font-family: 'Motive', sans-serif;
   font-weight: 500;
   font-size: clamp(14px, 1.5vw, 22px);
@@ -965,7 +969,21 @@ footer, body > .footer-text, .page > .footer-text {
 }
 
 /* ===== Global Responsive Footer Gap ===== */
-.main-content, .hero { flex: 1 0 auto !important; margin-bottom: 40px !important; }
-@media(max-width: 768px) { .main-content, .hero { margin-bottom: 60px !important; } }
+.main-content,
+.hero {
+  flex: 1 0 auto !important;
+  margin-bottom: 40px !important;
+}
 
-footer { margin-top: auto; width: 100%; }
+@media(max-width: 768px) {
+
+  .main-content,
+  .hero {
+    margin-bottom: 60px !important;
+  }
+}
+
+footer {
+  margin-top: auto;
+  width: 100%;
+}
